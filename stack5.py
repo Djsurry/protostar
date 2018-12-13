@@ -1,6 +1,6 @@
 from pwn import *
 import os
-
+# NOT WORKING AS OF NOW
 # ip = os.getenv("PROTOSTAR")
 # shell = ssh('user', ip, password='user')
 # sh = shell.run("sh")
